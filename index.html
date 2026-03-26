@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi Baby 💛</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    text-align: center;
+    background: linear-gradient(to bottom, #1a1f4b, #2a2f6b);
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Overlay */
+#overlay {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: linear-gradient(135deg, #0b1c47, #243573);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:1000;
+    color: #ffd699;
+    cursor: pointer;
+    overflow: hidden;
+}
+#overlay h1 { font-size: 2em; margin:0; }
+#overlay p { font-size: 1em; margin-top:10px; }
+
+/* Flying Bee */
+#bee {
+    position: absolute;
+    font-size: 2em;
+    animation: fly 10s linear infinite;
+}
+@keyframes fly {
+    0% { top: 10%; left: 5%; }
+    25% { top: 20%; left: 80%; }
+    50% { top: 70%; left: 60%; }
+    75% { top: 40%; left: 30%; }
+    100% { top: 10%; left: 5%; }
+}
+
+/* Containers */
+.container { padding: 20px 10px; }
+
+/* Buttons */
+button {
+    background: #ffd699;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 1em;
+    width: 80%;
+    max-width: 300px;
+    transition: transform 0.2s;
+    color: #1a1f4b;
+}
+button:hover { transform: scale(1.1); }
+
+/* Pages */
+.page { display: none; padding: 30px; min-height: 100vh; position: relative; }
+
+/* Floating hearts */
+.heart { position: absolute; font-size: 1.5em; }
+
+/* Big exploding heart */
+#bigHeart {
+    font-size: 5em;
+    position: absolute;
+    top: 40%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    color: #ff4d6d;
+    transition: transform 0.5s ease;
+    z-index: 2000;
+}
+
+/* Cake animation */
+#cake { font-size: 5em; animation: cakeGrow 1s ease forwards; }
+@keyframes cakeGrow { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+
+/* Confetti */
+.confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    opacity: 0.8;
+    animation: confettiFall 3s linear forwards;
+}
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+}
+
+/* Balloons */
+.balloon {
+    position: absolute;
+    width: 40px; height: 60px;
+    border-radius: 50% 50% 50% 50%;
+    background-color: red;
+    left: 50%;
+    bottom: -100px;
+    animation: floatUp 6s linear infinite;
+}
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 30px;
+    background: #fff;
+    left: 50%;
+    bottom: -30px;
+}
+@keyframes floatUp {
+    0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateX(calc(-50px + 100px * var(--dir))) translateY(-600px) scale(1.1); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Overlay -->
+<div id="overlay" onclick="startSite()">
+    <h1>Hi Baby 🥺♥️</h1>
+    <p>Open 💛</p>
+    <div id="bee">🐝</div>
+</div>
+
+<!-- Quiz -->
+<div class="page container" id="quiz">
+    <h2>🐝 Before you continue... answer this 😌</h2>
+    <p>Do you love me?</p>
+    <button onclick="quizAnswer('A')">A: Yes 💛</button><br>
+    <button onclick="quizAnswer('B')">B: Answer A 😏</button><br>
+    <button onclick="quizAnswer('C')">C: Between A and B 😅</button><br>
+    <button onclick="quizAnswer('D')">D: All of the above 🐝</button>
+    <p id="quizComment" style="color:#ffd699; font-weight:bold; display:none; margin-top:20px;"></p>
+</div>
+
+<!-- Traditional Praise -->
+<div class="page container" id="praise">
+    <h2>🐝 Ndabezitha, Mntwana…</h2>
+    <p>Zulu kaMalandela ngokulandela izinkomo zamadoda, Zulu omnyama ondlela zimhlophe, Wena kaPhunga noMageba, Wena kaMjokwane kaNdaba, Wena wenkayishana kaMenzi eyaphuza umlaza ngameva, Sthuli sika Ndaba</p>
+    <button onclick="showPage('celebrate')">Continue</button>
+</div>
+
+<!-- Celebrate Question -->
+<div class="page container" id="celebrate">
+    <h2>Will you allow me to celebrate you today? 💛</h2>
+    <button onclick="celebrateYes()">Yes 💛</button>
+    <button onclick="celebrateYes()">Absolutely 😍</button>
+    <div id="bigHeart">❤️</div>
+</div>
+
+<!-- Love Message Page 1 -->
+<div class="page container" id="love1">
+    <h2>💌 My Message</h2>
+    <p>Ow my sweet man, for someone I haven’t known long you mean so much to me. These past two months have been kinda weird for me, especially adapting to a new place and environment, but you’ve been there for me emotionally more than I ever expected. You have been my confidant and my shoulder, and you have given me the space and opportunity to always vent when anything worries me, and I appreciate that so much.</p>
+    <button onclick="showPage('love2')">Continue</button>
+</div>
+
+<!-- Love Message Page 2 -->
+<div class="page container" id="love2">
+    <p>You have filled my life with laughter, love, and beautiful moments that I cherish, even though it’s always in your bedroom 😂😭 Siyanda, I hope I can be to you what you are to me 🥺 I appreciate your patience and kindness. I hope your new age brings you wisdom and great health. Wishing you more prosperity, a bank full of cash, and for all your desires to be fulfilled. You are loved, Ndabezitha ♥️</p>
+    <div id="miniMessages"></div>
+    <button onclick="showPage('wishes')">Continue</button>
+</div>
+
+<!-- Birthday page -->
+<div class="page container" id="wishes">
+    <h1>Happy Birthday my love! 🎉</h1>
+    <div id="cake">🍰</div>
+    <button onclick="showPage('cakeSong'); launchConfetti(); launchBalloons()">Continue</button>
+</div>
+
+<!-- Cake + Spotify page -->
+<div class="page container" id="cakeSong">
+    <p>I can't wait to see you and give you some real cake 🍰<br>Press play to hear our song 🎵</p>
+    <iframe src="https://open.spotify.com/embed/track/0aXocmdjaWdkbYZ2ToDpre" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
+
+<script>
+function startSite() { 
+    document.getElementById('overlay').style.display='none'; 
+    showPage('quiz'); 
+}
+
+function showPage(pageId){
+    let pages = document.querySelectorAll('.page');
+    pages.forEach(p=>p.style.display='none');
+    document.getElementById(pageId).style.display='block';
+    if(pageId==='love2'){ startMiniMessages(); }
+}
+
+function quizAnswer(option){
+    let comment = document.getElementById('quizComment');
+    comment.style.display='block';
+    comment.textContent = "😎 I knew you’d pick that!";
+    setTimeout(()=>{ showPage('praise'); },1500);
+}
+
+function celebrateYes(){
+    let heart = document.getElementById('bigHeart');
+    heart.style.transform='translate(-50%, -50%) scale(1.5)';
+    for(let i=0;i<30;i++){ createMiniHeart(); }
+    setTimeout(()=>{ showPage('love1'); },2500);
+}
+
+function createMiniHeart(){
+    let heart = document.createElement('div');
+    heart.className='heart';
+    heart.style.left = '50%';
+    heart.style.top = '50%';
+    heart.style.fontSize = (Math.random()*1 + 1) + 'em';
+    heart.textContent='❤️';
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); }, 5000);
+}
+
+function startMiniMessages(){
+    let messages = ["You make me smile 😍","Forever my busy bee 🐝","My love 💛"];
+    let container = document.getElementById('miniMessages');
+    messages.forEach((msg,i)=>{
+        setTimeout(()=>{
+            let m = document.createElement('div');
+            m.style.position='absolute';
+            m.style.top='70%';
+            m.style.left='50%';
+            m.style.fontSize='1.5em';
+            m.style.color='#ffd699';
+            m.style.transform='translateX(-50%)';
+            m.textContent=msg;
+            container.appendChild(m);
+            setTimeout(()=>{ m.remove(); },4000);
+        }, i*800);
+    });
+}
+
+function launchConfetti(){
+    for(let i=0;i<50;i++){
+        let confetti = document.createElement('div');
+        confetti.className='confetti-piece';
+        confetti.style.left = Math.random()*90+'%';
+        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
+        document.body.appendChild(confetti);
+        setTimeout(()=>{ confetti.remove(); },3000);
+    }
+}
+
+function launchBalloons(){
+    for(let i=0;i<10;i++){
+        let balloon = document.createElement('div');
+        balloon.className='balloon';
+        balloon.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 50%)`;
+        balloon.style.left = Math.random()*80 + 10 + '%';
+        balloon.style.setProperty('--dir', Math.random()>0.5?1:-1);
+        document.body.appendChild(balloon);
+        setTimeout(()=>{ balloon.remove(); }, 6000);
+    }
+}
+</script>
+
+</body>
+</html>
